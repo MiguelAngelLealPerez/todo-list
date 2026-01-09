@@ -1,59 +1,92 @@
-// Selección de elementos del DOM
-const taskForm = document.getElementById("task-form");
-const taskInput = document.getElementById("task-input");
-const taskList = document.getElementById("task-list");
+const form = document.getElementById("task-form");
+const input = document.getElementById("task-input");
+const daySelect = document.getElementById("task-day");
+const dateInput = document.getElementById("task-date");
+const list = document.getElementById("task-list");
+const pendingCount = document.getElementById("pending-count");
+const filterButtons = document.querySelectorAll(".filters button");
 
-// Evento para agregar tareas
-taskForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // Evita recargar la página
+let tasks = [];
+let currentFilter = "all";
 
-    const taskText = taskInput.value.trim();
+form.addEventListener("submit", e => {
+    e.preventDefault();
 
-    // Validación: no permitir tareas vacías
-    if (taskText === "") {
-        alert("Por favor, escribe una tarea.");
+    if (!input.value.trim() || !daySelect.value || !dateInput.value) {
+        alert("Completa todos los campos");
         return;
     }
 
-    addTask(taskText);
-    taskInput.value = "";
+    tasks.push({
+        text: input.value,
+        day: daySelect.value,
+        date: dateInput.value,
+        completed: false
+    });
+
+    form.reset();
+    render();
 });
 
-// Función para crear una tarea
-function addTask(text) {
-    const li = document.createElement("li");
-    li.classList.add("task");
+function render() {
+    list.innerHTML = "";
+    document.querySelectorAll(".day").forEach(d => d.innerHTML = `<h4>${d.dataset.day}</h4>`);
 
-    const span = document.createElement("span");
-    span.classList.add("task-text");
-    span.textContent = text;
-
-    const actions = document.createElement("div");
-    actions.classList.add("task-actions");
-
-    const completeBtn = document.createElement("button");
-    completeBtn.classList.add("complete-btn");
-    completeBtn.textContent = "✔";
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("delete-btn");
-    deleteBtn.textContent = "✖";
-
-    // Marcar como completada
-    completeBtn.addEventListener("click", function () {
-        li.classList.toggle("completed");
+    let filtered = tasks.filter(t => {
+        if (currentFilter === "completed") return t.completed;
+        if (currentFilter === "pending") return !t.completed;
+        return true;
     });
 
-    // Eliminar tarea
-    deleteBtn.addEventListener("click", function () {
-        li.remove();
+    filtered.forEach((task, index) => {
+        const li = document.createElement("li");
+        if (task.completed) li.classList.add("completed");
+
+        li.innerHTML = `
+    <span class="task-text">
+        <strong>Tarea:</strong> ${task.text}
+        <br>
+        <strong>Fecha límite:</strong> ${task.day} ${task.date}
+    </span>
+
+    <div class="task-actions">
+        <button class="complete-btn" onclick="toggleTask(${index})">✔</button>
+        <span class="action-label">Completar</span>
+
+        <button class="delete-btn" onclick="deleteTask(${index})">✖</button>
+        <span class="action-label">Eliminar</span>
+    </div>
+`;
+
+        list.appendChild(li);
+
+        if (!task.completed) {
+            const dayBox = document.querySelector(`.day[data-day="${task.day}"]`);
+            const div = document.createElement("div");
+            div.className = "day-task";
+            div.textContent = task.text;
+            dayBox.appendChild(div);
+        }
     });
 
-    actions.appendChild(completeBtn);
-    actions.appendChild(deleteBtn);
-
-    li.appendChild(span);
-    li.appendChild(actions);
-
-    taskList.appendChild(li);
+    pendingCount.textContent = `Pendientes: ${tasks.filter(t => !t.completed).length}`;
 }
+
+function toggleTask(index) {
+    tasks[index].completed = !tasks[index].completed;
+    render();
+}
+
+function deleteTask(index) {
+    if (confirm("¿Eliminar esta tarea?")) {
+        tasks.splice(index, 1);
+        render();
+    }
+}
+
+filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        currentFilter = btn.dataset.filter;
+        render();
+    });
+});

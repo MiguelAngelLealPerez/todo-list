@@ -1,102 +1,125 @@
-/* RESET BÁSICO */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
-/* BODY */
 body {
-    background-color: #f5f6f8;
+    background: #f5f6f8;
     color: #333;
-    min-height: 100vh;
 }
 
-/* HEADER */
 header {
     text-align: center;
-    padding: 30px 20px;
+    padding: 25px;
 }
 
 .title {
     font-size: 2.5rem;
-    font-weight: bold;
 }
 
 .subtitle {
-    font-size: 1.2rem;
     color: #666;
-    margin-top: 5px;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR LISTA */
 .todo-container {
-    background-color: #ffffff;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 25px;
+    background: white;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
 
 /* FORMULARIO */
 #task-form {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-#task-input {
-    flex: 1;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
+#task-form input,
+#task-form select,
+#task-form button {
+    padding: 10px;
     border-radius: 6px;
-}
-
-#task-input:focus {
-    outline: none;
-    border-color: #4f46e5;
+    border: 1px solid #ccc;
 }
 
 #task-form button {
-    padding: 12px 18px;
-    font-size: 1rem;
-    border: none;
-    background-color: #4f46e5;
+    background: #4f46e5;
     color: white;
-    border-radius: 6px;
+    border: none;
     cursor: pointer;
 }
 
-#task-form button:hover {
-    background-color: #4338ca;
+/* CONTROLES */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
-/* LISTA DE TAREAS */
-#task-list {
-    list-style: none;
+.filters button {
+    margin-left: 5px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-/* CADA TAREA */
+/* TAREAS */
 #task-list li {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-/* TEXTO DE TAREA */
-.task-text {
-    font-size: 1rem;
+.completed .task-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* CALENDARIO */
+.week-board {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 120px;
+}
+
+.day h4 {
+    margin-bottom: 5px;
+}
+
+.day-task {
+    font-size: 0.85rem;
+    background: #eef2ff;
+    padding: 4px;
+    border-radius: 4px;
+    margin-bottom: 4px;
 }
 
 /* BOTONES DE ACCIÓN */
 .task-actions {
     display: flex;
-    gap: 8px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 .task-actions button {
@@ -104,9 +127,10 @@ header {
     padding: 6px 10px;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-/* BOTÓN COMPLETAR */
+/* PALOMITA VERDE */
 .complete-btn {
     background-color: #22c55e;
     color: white;
@@ -116,7 +140,7 @@ header {
     background-color: #16a34a;
 }
 
-/* BOTÓN ELIMINAR */
+/* X ROJA */
 .delete-btn {
     background-color: #ef4444;
     color: white;
@@ -126,27 +150,24 @@ header {
     background-color: #dc2626;
 }
 
-/* TAREA COMPLETADA (JS agregará esta clase) */
-.completed .task-text {
-    text-decoration: line-through;
-    color: #9ca3af;
+/* TEXTO DE AYUDA DE BOTONES */
+.action-label {
+    font-size: 0.7rem;
+    color: #555;
+    margin-right: 8px;
 }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-    color: #777;
+/* TEXTO DE TAREA */
+.task-text strong {
+    color: #000;
 }
 
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    .todo-container {
-        margin: 0 15px;
-    }
-
-    .title {
-        font-size: 2rem;
-    }
+/* TARJETA DE TAREA */
+#task-list li {
+    background: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    align-items: center;
 }
