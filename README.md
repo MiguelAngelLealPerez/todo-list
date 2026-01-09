@@ -11,3 +11,6 @@ Aplicación web de lista de tareas para cumplir con la pruebas tecnicas donde la
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
+
+## Video Explicativo
+-https://drive.google.com/drive/folders/1BexqQBufjzOZ00cBkRSyDfBg7GneM-3q
