@@ -14,10 +14,7 @@
 </header>
 
 <main>
-    <!-- LISTA PRINCIPAL -->
     <section class="todo-container">
-
-        <!-- FORMULARIO -->
         <form id="task-form">
             <input type="text" id="task-input" placeholder="Nueva tarea...">
 
@@ -33,11 +30,9 @@
             </select>
 
             <input type="number" id="task-date" min="1" max="31" placeholder="Día límite">
-
             <button type="submit">Agregar</button>
         </form>
 
-        <!-- CONTROLES -->
         <div class="controls">
             <span id="pending-count">Pendientes: 0</span>
 
@@ -48,15 +43,11 @@
             </div>
         </div>
 
-        <!-- LISTA -->
         <ul id="task-list"></ul>
     </section>
 
-    <!-- CALENDARIO SEMANAL -->
     <section class="week-board">
         <h2>Vista semanal</h2>
-        <div style="padding: 10px;">
-        </div>
         <div class="week-grid">
             <div class="day" data-day="Lunes"><h4>Lunes</h4></div>
             <div class="day" data-day="Martes"><h4>Martes</h4></div>

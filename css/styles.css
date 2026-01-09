@@ -10,6 +10,7 @@ body {
     color: #333;
 }
 
+/* ENCABEZADO */
 header {
     text-align: center;
     padding: 25px;
@@ -23,7 +24,7 @@ header {
     color: #666;
 }
 
-/* CONTENEDOR LISTA */
+/* CONTENEDOR PRINCIPAL */
 .todo-container {
     background: white;
     max-width: 800px;
@@ -70,12 +71,16 @@ header {
     cursor: pointer;
 }
 
-/* TAREAS */
+/* LISTA DE TAREAS */
 #task-list li {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .completed .task-text {
@@ -83,7 +88,49 @@ header {
     color: #999;
 }
 
-/* CALENDARIO */
+.task-text strong {
+    color: #000;
+}
+
+/* ACCIONES */
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-actions button {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.complete-btn {
+    background-color: #22c55e;
+    color: white;
+}
+
+.complete-btn:hover {
+    background-color: #16a34a;
+}
+
+.delete-btn {
+    background-color: #ef4444;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #dc2626;
+}
+
+.action-label {
+    font-size: 0.7rem;
+    color: #555;
+}
+
+/* CALENDARIO SEMANAL */
 .week-board {
     max-width: 900px;
     margin: 40px auto;
@@ -112,62 +159,4 @@ header {
     padding: 4px;
     border-radius: 4px;
     margin-bottom: 4px;
-}
-
-/* BOTONES DE ACCIÓN */
-.task-actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-
-.task-actions button {
-    border: none;
-    padding: 6px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* PALOMITA VERDE */
-.complete-btn {
-    background-color: #22c55e;
-    color: white;
-}
-
-.complete-btn:hover {
-    background-color: #16a34a;
-}
-
-/* X ROJA */
-.delete-btn {
-    background-color: #ef4444;
-    color: white;
-}
-
-.delete-btn:hover {
-    background-color: #dc2626;
-}
-
-/* TEXTO DE AYUDA DE BOTONES */
-.action-label {
-    font-size: 0.7rem;
-    color: #555;
-    margin-right: 8px;
-}
-
-/* TEXTO DE TAREA */
-.task-text strong {
-    color: #000;
-}
-
-/* TARJETA DE TAREA */
-#task-list li {
-    background: #ffffff;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    align-items: center;
 }

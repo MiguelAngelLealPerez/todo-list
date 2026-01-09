@@ -30,11 +30,13 @@ form.addEventListener("submit", e => {
 
 function render() {
     list.innerHTML = "";
-    document.querySelectorAll(".day").forEach(d => d.innerHTML = `<h4>${d.dataset.day}</h4>`);
+    document.querySelectorAll(".day").forEach(d => {
+        d.innerHTML = `<h4>${d.dataset.day}</h4>`;
+    });
 
-    let filtered = tasks.filter(t => {
-        if (currentFilter === "completed") return t.completed;
-        if (currentFilter === "pending") return !t.completed;
+    const filtered = tasks.filter(task => {
+        if (currentFilter === "completed") return task.completed;
+        if (currentFilter === "pending") return !task.completed;
         return true;
     });
 
@@ -43,20 +45,18 @@ function render() {
         if (task.completed) li.classList.add("completed");
 
         li.innerHTML = `
-    <span class="task-text">
-        <strong>Tarea:</strong> ${task.text}
-        <br>
-        <strong>Fecha límite:</strong> ${task.day} ${task.date}
-    </span>
+            <span class="task-text">
+                <strong>Tarea:</strong> ${task.text}<br>
+                <strong>Fecha límite:</strong> ${task.day} ${task.date}
+            </span>
 
-    <div class="task-actions">
-        <button class="complete-btn" onclick="toggleTask(${index})">✔</button>
-        <span class="action-label">Completar</span>
-
-        <button class="delete-btn" onclick="deleteTask(${index})">✖</button>
-        <span class="action-label">Eliminar</span>
-    </div>
-`;
+            <div class="task-actions">
+                <button class="complete-btn" onclick="toggleTask(${index})">✔</button>
+                <span class="action-label">Completar</span>
+                <button class="delete-btn" onclick="deleteTask(${index})">✖</button>
+                <span class="action-label">Eliminar</span>
+            </div>
+        `;
 
         list.appendChild(li);
 
@@ -84,9 +84,9 @@ function deleteTask(index) {
     }
 }
 
-filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        currentFilter = btn.dataset.filter;
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        currentFilter = button.dataset.filter;
         render();
     });
 });
