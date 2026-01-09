@@ -160,3 +160,90 @@ header {
     border-radius: 4px;
     margin-bottom: 4px;
 }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+    .week-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* CONTENEDOR */
+    .todo-container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    /* FORMULARIO EN COLUMNA */
+    #task-form {
+        flex-direction: column;
+    }
+
+    #task-form input,
+    #task-form select,
+    #task-form button {
+        width: 100%;
+    }
+
+    /* CONTROLES */
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .filters button {
+        margin-left: 0;
+        margin-right: 5px;
+    }
+
+    /* TARJETAS DE TAREA */
+    #task-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .task-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    /* CALENDARIO */
+    .week-board {
+        margin: 25px 15px;
+    }
+
+    .week-grid {
+        grid-template-columns: repeat(7, minmax(120px, 1fr));
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* TÍTULOS */
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    /* CALENDARIO CON SCROLL */
+    .week-grid {
+        grid-template-columns: repeat(7, 140px);
+        overflow-x: auto;
+    }
+
+    .day {
+        min-height: 100px;
+    }
+}
