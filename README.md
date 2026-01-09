@@ -13,4 +13,4 @@ Aplicación web de lista de tareas para cumplir con la pruebas tecnicas donde la
 - JavaScript (Vanilla)
 
 ## Video Explicativo
--https://drive.google.com/drive/folders/1BexqQBufjzOZ00cBkRSyDfBg7GneM-3q
+-https://drive.google.com/file/d/18DJjipuhu_uGwaiycZrwBHzaPGahhs83/view?usp=sharing
